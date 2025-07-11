@@ -26,14 +26,14 @@ class KNNRegressor():
         self.k = k
         self.iterations = iterations
     
-    def fit(self, X_train, y_train):
-        self.X_train = X_train
-        self.y_train = y_train
+    def fit(self, X, y):
+        self.X = X
+        self.y = y
 
     def predict_point(self, x):
-        distances = [euclidean_distance(x, x2) for x2 in self.X_train]
+        distances = [euclidean_distance(x, x2) for x2 in self.X]
         idx = np.argsort(distances)[:self.k]
-        point_prediction = np.mean(self.y_train[idx])
+        point_prediction = np.mean(self.y[idx])
         return point_prediction
     
     def predict(self, X_test):
